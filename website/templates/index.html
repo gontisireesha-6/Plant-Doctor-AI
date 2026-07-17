@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌱 Plant Doctor AI 🌱</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#d4fc79,#96e6a1);
+            min-height:100vh;
+        }
+
+        .container{
+            width:90%;
+            max-width:900px;
+            margin:auto;
+            padding:40px 20px;
+        }
+
+        .card{
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            text-align:center;
+            box-shadow:0 15px 35px rgba(0,0,0,.2);
+        }
+
+        h1{
+            color:#1b5e20;
+            font-size:30px;
+            font-weight:800;
+            line-height:1.3;
+            margin-bottom:15px;
+        }
+
+        h3{
+            color:#2e7d32;
+            font-size:30px;
+            margin-bottom:15px;
+        }
+
+        p{
+            color:#555;
+            line-height:1.7;
+            margin-bottom:10px;
+            font-size:18px;
+        }
+
+        .quote{
+            color:#1b5e20;
+            font-weight:700;
+            font-size:24px;
+            margin-bottom:20px;
+        }
+
+        .upload-box{
+            margin-top:30px;
+        }
+
+        input[type=file]{
+            padding:12px;
+            border:2px dashed #2e7d32;
+            border-radius:10px;
+            width:100%;
+            margin-bottom:20px;
+        }
+
+        button{
+            background:#2e7d32;
+            color:white;
+            border:none;
+            width:320px;
+            height:60px;
+            border-radius:10px;
+            font-size:20px;
+            cursor:pointer;
+            font-weight:600;
+        }
+
+        button:hover{
+            background:#1b5e20;
+        }
+
+        .result{
+            margin-top:30px;
+            background:#f1f8e9;
+            padding:20px;
+            border-radius:15px;
+        }
+
+        .prediction{
+            color:#1b5e20;
+            font-size:24px;
+            font-weight:bold;
+        }
+
+        .confidence{
+            color:#0d47a1;
+            font-size:20px;
+            margin-top:10px;
+        }
+        footer {
+    background: #1b5e20;
+    color: #FFD700;
+    text-align: center;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+footer h3 {
+    color: #FFD700;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+footer p {
+    color: #FFF176;
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+footer hr {
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 80%;
+    margin: 15px auto;
+}
+footer h3 {
+    text-shadow: 0 0 8px #FFD700;
+}
+
+footer p {
+    text-shadow: 0 0 4px rgba(255,215,0,0.4);
+}
+@media (max-width: 768px) {
+
+    .card {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        height: 55px;
+        font-size: 18px;
+    }
+
+    input[type=file] {
+        font-size: 15px;
+    }
+
+    .prediction,
+    .confidence {
+        font-size: 20px;
+    }
+
+    footer h3 {
+        font-size: 22px;
+    }
+
+    footer p {
+        font-size: 15px;
+    }
+}
+        
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>
+
+
+
+
+🍅🫑🥔🌱 Plant Doctor AI 🌱🍅🫑🥔
+
+
+
+
+</h1>
+
+<div class="quote">
+Jai Jawan • Jai Kisan • Jai Vigyan
+</div>
+
+<h3>AI-Powered Crop Disease Detection</h3>
+
+<p><b>Detect diseases early • Protect your crops • Increase your yield</b></p>
+
+<p><b>Healthy Crops • Healthy Farmers • Prosperous Farmers • Prosperous Nation</b></p>
+
+<div class="upload-box">
+
+<form action="/predict" method="POST" enctype="multipart/form-data">
+
+<input type="file" name="file" required>
+
+<br>
+
+<button type="submit">🔍 Predict Disease</button>
+
+</form>
+
+</div>
+
+{% if prediction %}
+
+<div class="result">
+
+<h2>🌿 Prediction Result</h2>
+
+<hr style="margin:15px 0;">
+
+<p style="font-size:22px;">
+<b>Disease Detected:</b>
+<span class="prediction">{{ prediction }}</span>
+</p>
+
+<p style="font-size:20px;">
+<b>Confidence:</b>
+<span class="confidence">{{ confidence }}%</span>
+</p>
+
+<br>
+
+<h4 style="color:#2e7d32;">📖 About this Disease</h4>
+<p>{{ description }}</p>
+
+<h4 style="color:#2e7d32;">🌿 Organic Treatment</h4>
+<p>{{ organic_treatment }}</p>
+
+<h4 style="color:#2e7d32;">🧪 Chemical Treatment</h4>
+<p>{{ chemical_treatment }}</p>
+
+{% if not is_healthy %}
+
+<h4 style="color:#d35400;">⚠️ Precautions</h4>
+
+<ul style="text-align:left; line-height:1.8; font-size:17px;">
+    <li>Follow the recommended dosage on the product label.</li>
+    <li>Wear gloves, a mask, and protective clothing while spraying.</li>
+    <li>Spray during calm weather, preferably in the early morning or evening.</li>
+    <li>Keep chemicals away from children, pets, food, and water sources.</li>
+    <li>Wash hands and equipment thoroughly after spraying.</li>
+</ul>
+
+{% endif %}
+</div>
+{% endif %}
+
+<footer>
+    <h3>🌱 Plant Doctor AI 🌱</h3>
+    <p>AI Powered Crop Disease Detection</p>
+    <p>Supporting Farmers with Artificial Intelligence</p>
+    <hr>
+    <p>© 2026 Plant Doctor AI | Developed for Smart Agriculture</p>
+</footer>
+
+
+</body>
+</html>
