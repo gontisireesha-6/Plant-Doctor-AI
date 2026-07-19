@@ -26,7 +26,7 @@ class_names = [
 def predict(img_array):
     img_array = tf.expand_dims(img_array, 0)
 
-    predictions = model.predict(img_array)
+    predictions = model.predict(img_array, verbose=0)
 
     predicted_class = class_names[np.argmax(predictions[0])]
     confidence = round(100 * np.max(predictions[0]), 2)
